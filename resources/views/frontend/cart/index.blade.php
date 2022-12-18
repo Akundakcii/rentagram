@@ -58,7 +58,7 @@
                     <thead>
                     <th>Fotoğraf</th>
                     <th>Ürün</th>
-                    <th>Adet</th>
+                    <th>Gün</th>
                     <th>Fiyat</th>
                     <th>İşlemler</th>
                     </thead>
@@ -66,19 +66,28 @@
                     @foreach($cart->details as $detail)
                         <tr>
                             <td>
-                                <img src="{{asset("/storage/cars/".$detail->car->images[0]->image_url)}}"
-                                     alt="{{$detail->car->images[0]->alt}}" width="100">
+                                <img src="{{asset("/storage/cars/".$detail->car->images->first()?->image_url)}}"
+                                     alt="{{$detail->car->images->first()?->alt}}" width="100">
                             </td>
                             <td>{{ $detail->car->name }}</td>
-                            <td>{{ $detail->quantity }}</td>
-                            <td>{{ $detail->car->price }}</td>
+
+
+                            <td><a href="{{route('cart.decrement',$detail)}}">-</a> {{ $detail->quantity }} <a href="{{route('cart.increment',$detail)}}" >+</a></td>
+
+                            <td>{{ $detail->car->price * $detail->quantity }}</td>
                             <td>
                                 <a href="/sepetim/sil/{{$detail->cart_detail_id}}">Sepetten Sil</a>
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
+
+
+
                 </table>
+
+
+
                 <a href="/satin-al" class="btn btn-success float-end">Satın Al</a>
             @else
                 <p class="text-danger text-center">Sepetinizde ürün bulunamadı.</p>

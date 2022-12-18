@@ -5,6 +5,10 @@
 @section("btn_label","Geri Dön")
 @section("btn_icon","arrow-left")
 @section("content")
+    @foreach($errors->all() as $error)
+    {{$error}}
+    @endforeach
+
     <form action="{{url("/user/$user->user_id/addresses")}}" method="POST" autocomplete="off" novalidate>
         @csrf
         <input type="hidden" name="user_id" value="{{$user->user_id}}">

@@ -19,7 +19,9 @@ class HomeController extends Controller
     }
     public function detail(Car $car): View
     {
-      return view("frontend.home.detail",["car" => $car ]);
+        $categories = Category::all()->where("is_active", true);
+
+      return view("frontend.home.detail",["car" => $car,"categories"=>$categories]);
     }
 
 }

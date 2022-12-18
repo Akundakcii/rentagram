@@ -8,11 +8,12 @@
     <table class="table table-striped table-sm">
         <thead>
         <tr>
+            <th scope="col">Araç Id</th>
             <th scope="col">Araç Adı</th>
             <th scope="col">Kategorisi</th>
+            <th scope="col">K.Ekledi</th>
             <th scope="col">Km</th>
             <th scope="col">Model</th>
-            <th scope="col">Hangi K. Ekledi</th>
             <th scope="col">Marka</th>
             <th scope="col">Yakıt</th>
             <th scope="col">Motor</th>

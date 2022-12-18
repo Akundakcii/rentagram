@@ -25,28 +25,30 @@ class  CarImageRequest extends FormRequest
     {
 
         return [
-         'car_id'=>"required|numeric",
-            'image_url'=>"required|image|mimes:jpg,jpeg,png|sometimes",
+           /* 'car_id' => "required|numeric",
+            'image_url' => "required|image|mimes:jpg,jpeg,png|sometimes",*/
 
 
         ];
-    }public function messages()
-{
-    return [
-       "car_id.required" => "Bu alan zorunludur.",
-        "car_id.min" => "Ad soyad alanı en az 3 karakterden oluşmalıdır.",
-        "image_url.required" => "Bu alan zorunludur.",
-        "image_url.mimes" => "Sadec .Jpg,.jpeg,.png yuklenır.",
+    }
 
-    ];
-}
-
-   /* protected function passedValidation()
+    public function messages()
     {
-        if (!$this->request->has("slug")) {
-            $name = $this->request->get("name");
-            $slug = Str::of($name)->slug();
-            $this->request->set("slug", $slug);
-        }
-    }*/
+        return [
+            "car_id.required" => "Car_id zorunludur.",
+          //  "car_id.min" => "Ad soyad alanı en az 3 karakterden oluşmalıdır.",
+            "image_url.required" => "Bu alan zorunludur.",
+            "image_url.mimes" => "Sadec .Jpg,.jpeg,.png yuklenır.",
+
+        ];
+    }
+
+    /* protected function passedValidation()
+     {
+         if (!$this->request->has("slug")) {
+             $name = $this->request->get("name");
+             $slug = Str::of($name)->slug();
+             $this->request->set("slug", $slug);
+         }
+     }*/
 }

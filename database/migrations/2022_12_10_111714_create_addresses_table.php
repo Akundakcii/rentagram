@@ -21,7 +21,7 @@ class CreateAddressesTable extends Migration
             $table->string("district");
             $table->string("zipcode");
             $table->string("address");
-            $table->boolean("is_default");
+            $table->boolean("is_default")->default(false);
             $table->softDeletes();
             $table->timestamps();
         });

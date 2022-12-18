@@ -101,12 +101,12 @@ class AddressController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(User $user,Address $address)
     {
 
-        $user->delete();
+        $address->delete();
 
-        return Redirect::to($this->returnUrl);
+        return back();
 
     }
 }

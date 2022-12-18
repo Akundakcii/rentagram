@@ -41,6 +41,7 @@ class CheckoutController extends Controller
         // Kullanıcıyı al
         $user = Auth::user();
 
+
         // Sepetteki ürünlerin toplam tutarını hesapla
         $total = $this->calculateCartTotal();
 
@@ -56,7 +57,7 @@ class CheckoutController extends Controller
         $request->setPaymentCard($paymentCard);
 
         // Buyer nesnesini oluştur
-        $buyer = IyzicoBuyerHelper::getBuyer();
+        $buyer = IyzicoBuyerHelper::getBuyer($user);
         $request->setBuyer($buyer);
 
         // Kargo adresi nesnelerini oluştur.

@@ -14,9 +14,9 @@ class IyzicoBuyerHelper
      * @param
      * @return Buyer
      */
-    public static function getBuyer(): Buyer
+    public static function getBuyer($user): Buyer
     {
-        $user = Auth::user();
+      //  $user = Auth::user();
         $user = $user->adress;
         $buyer = new Buyer();
         $buyer->setId($user->user_id);

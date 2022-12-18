@@ -64,8 +64,10 @@
                 <div class="card-group">
                     @foreach($cars as $car)
                         <div class="card" style="width: 18rem;">
-                            <img src="{{asset("/storage/cars/".$car->images[0]->image_url)}} "
+                            @if($car->images->isNotEmpty())
+                            <img src="{{asset("/storage/cars/".$car->images[0]->image_url)}}"
                                  class="card-img-top" alt="{{$car->images[0]->alt}} "  width="100"  >
+                            @endif
                             <div class="card-body">
                                 <h5 class="card-title">{{$car->name}}</h5>
                                 <h6 class="card-title">Fiyat: {{$car->price}}TL</h6>

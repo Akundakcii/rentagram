@@ -30,9 +30,10 @@ Route::group(["middleware"=>"auth"],function () {
     Route::get("/sepetim",[\App\Http\Controllers\Frontend\CartController::class,'index']);
     Route::get("/sepetim/ekle/{car}",[\App\Http\Controllers\Frontend\CartController::class,'add']);
     Route::get("/sepetim/sil/{cartDetails}", [\App\Http\Controllers\Frontend\CartController::class, 'remove']);
+    Route::get("/satin-al", [\App\Http\Controllers\Frontend\CheckoutController::class, 'showCheckoutForm']);
+    Route::post("/satin-al", [\App\Http\Controllers\Frontend\CheckoutController::class, 'checkout']);
 });
-Route::get("/satin-al", [\App\Http\Controllers\Frontend\CheckoutController::class, 'showCheckoutForm']);
-Route::post("/satin-al", [\App\Http\Controllers\Frontend\CheckoutController::class, 'checkout']);
+
 
 
 Route::group(["middleware"=>["auth","is_admin"]],function (){
@@ -44,6 +45,10 @@ Route::resource("/categories",\App\Http\Controllers\Admin\CategoryController::cl
 Route::resource("/cars",\App\Http\Controllers\Admin\CarController::class);
 Route::resource("/cars/{car}/images",\App\Http\Controllers\Admin\CarImageController::class);
 Route::resource("/user/{user}/addresses",\App\Http\Controllers\Admin\AddressController::class);
+Route::GET("/cartdetail/{id}/increment",[\App\Http\Controllers\Frontend\CartController::class,'increment'])->name('cart.increment');
+Route::GET("/cartdetail/{id}/decrement",[\App\Http\Controllers\Frontend\CartController::class,'decrement'])->name('cart.decrement');
+
+
 });
 
 
