@@ -91,9 +91,18 @@
         <h2>Bilgiler</h2>
         <div>
 
-            <h5 class="card-title">{{$car->name}}</h5>
-            <h6 class="card-title">Fiyat: {{$car->price}}TL</h6>
-            <p class="card-text">{{$car->description }}</p>
+            <h5 class="card-title">Başlık: {{$car->name}}</h5>
+            <h5 class="card-title">Kilometresi: {{$car->km}}</h5>
+            <h5 class="card-title">Model: {{$car->model}}</h5>
+            <h5 class="card-title">Markası: {{$car->brand}}</h5>
+            <h5 class="card-title">Kim Ekledi: {{$car->user_id}}</h5>
+            <h5 class="card-title">Yakıtı: {{$car->fuel}}</h5>
+            <h5 class="card-title">Motoru: {{$car->engine}}</h5>
+            <h5 class="card-text">Açıklama:{{$car->description }}</h5>
+            <h2  class="card-title">Fiyat: {{$car->price}}TL</h2>
+            <br>
+
+
             <a href="/sepetim/ekle/{{$car->car_id}}" class="btn btn-primary">Sepete Ekle</a>
         </div>
 

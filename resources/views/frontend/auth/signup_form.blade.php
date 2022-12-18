@@ -24,8 +24,7 @@
                     </div>
                     <div class="mt-2">
 
-                        <x-input label="Adres" placeholder="Adres Giriniz" field="adress" type="text" />
-                    </div>
+
                     <div class="mt-2">
                         <x-input label="Telefon giriniz" placeholder="Telefon giriniz" field="tel_no" type="text"/>
                     </div>

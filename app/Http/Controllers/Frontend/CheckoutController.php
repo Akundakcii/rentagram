@@ -38,16 +38,11 @@ class CheckoutController extends Controller
         $data = $this->prepare($request, $creditCard->getFillable());
         $creditCard->fill($data);
 
-        // Kullanıcıyı al
-        $user = Auth::user();
-
-
         // Sepetteki ürünlerin toplam tutarını hesapla
         $total = $this->calculateCartTotal();
 
         // Sepeti getir
         $cart = $this->getOrCreateCart();
-
 
         // Ödeme isteği oluştur
         $request = IyzicoRequestHelper::createRequest($cart, $total);
@@ -57,7 +52,7 @@ class CheckoutController extends Controller
         $request->setPaymentCard($paymentCard);
 
         // Buyer nesnesini oluştur
-        $buyer = IyzicoBuyerHelper::getBuyer($user);
+        $buyer = IyzicoBuyerHelper::getBuyer();
         $request->setBuyer($buyer);
 
         // Kargo adresi nesnelerini oluştur.
@@ -122,7 +117,7 @@ class CheckoutController extends Controller
 
     private function getBasketItems(): array
     {
-        $basketItems = array();
+        $basketItems = [];
         $cart = $this->getOrCreateCart();
         $cartDetails = $cart->details;
 
@@ -135,7 +130,7 @@ class CheckoutController extends Controller
             $item->setPrice($detail->car->price);
 
             for ($i = 0; $i < $detail->quantity; $i++) {
-                array_push($basketItems, $item);
+                $basketItems[] = $item;
             }
         }
 
@@ -169,7 +164,8 @@ class CheckoutController extends Controller
 
     private function createInvoiceWithDetails(Order $order)
     {
-        $invoice = new Invoice([
+        $invoice = Invoice::create([
+            'order_id' => $order->order_id,
             "cart_id" => $order->order_id,
             "code" => $order->code
         ]);
@@ -177,13 +173,11 @@ class CheckoutController extends Controller
         //Fatura Detaylarını Ekle
         foreach ($order->details as $detail) {
             $invoice->details()->create([
-                'invoice_id' => $invoice->invoice_id,
                 'car_id' => $detail->car_id,
                 'quantity' => $detail->quantity,
                 'unit_price' => $detail->car->price,
                 'total' => ($detail->quantity * $detail->car->price),
             ]);
         }
-
     }
 }

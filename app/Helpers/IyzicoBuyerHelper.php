@@ -2,7 +2,6 @@
 
 namespace App\Helpers;
 
-use App\Models\Address;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Iyzipay\Model\Buyer;
@@ -14,10 +13,9 @@ class IyzicoBuyerHelper
      * @param
      * @return Buyer
      */
-    public static function getBuyer($user): Buyer
+    public static function getBuyer(): Buyer
     {
-      //  $user = Auth::user();
-        $user = $user->adress;
+        $user = Auth::user();
         $buyer = new Buyer();
         $buyer->setId($user->user_id);
         $buyer->setName($user->name);

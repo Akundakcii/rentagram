@@ -3,7 +3,7 @@
        class="form-control"
        id="{{$field}}"
        name="{{$field}}"
-       value="{{old("$field", "$value")}}"
+       value="{{old($field, $value)}}"
        placeholder="{{$placeholder}}">
 
 @error("$field")
