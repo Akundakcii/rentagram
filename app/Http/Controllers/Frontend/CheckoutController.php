@@ -8,6 +8,7 @@ use App\Helpers\IyzicoOptionsHelper;
 use App\Helpers\IyzicoPaymentCardHelper;
 use App\Helpers\IyzicoRequestHelper;
 use App\Http\Controllers\Controller;
+use App\Models\Car;
 use App\Models\Cart;
 use App\Models\CreditCard;
 use App\Models\Invoice;
@@ -84,6 +85,7 @@ class CheckoutController extends Controller
 
             //Fatura Oluştur
             $this->createInvoiceWithDetails($order);
+
 
             return view("frontend.checkout.success");
 
@@ -177,6 +179,9 @@ class CheckoutController extends Controller
                 'quantity' => $detail->quantity,
                 'unit_price' => $detail->car->price,
                 'total' => ($detail->quantity * $detail->car->price),
+            ]);
+            Car::where('car_id', $detail->car_id)->update([
+                'is_active' => false
             ]);
         }
     }

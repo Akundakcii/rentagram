@@ -95,7 +95,7 @@
             <h5 class="card-title">Kilometresi: {{$car->km}}</h5>
             <h5 class="card-title">Model: {{$car->model}}</h5>
             <h5 class="card-title">Markası: {{$car->brand}}</h5>
-            <h5 class="card-title">Kim Ekledi: {{$car->user_id}}</h5>
+            <h5 class="card-title">Kim Ekledi: {{$car->user->name}}</h5>
             <h5 class="card-title">Yakıtı: {{$car->fuel}}</h5>
             <h5 class="card-title">Motoru: {{$car->engine}}</h5>
             <h5 class="card-text">Açıklama:{{$car->description }}</h5>

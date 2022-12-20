@@ -25,20 +25,22 @@ class  CategoryRequest extends FormRequest
     {
         //$category_id =$this->request->get("category_id");
         return [
-         'name'=>"required|min:3",
-          'slug'=>"required|sometimes|unique:App\Models\Category,slug",
+            'name' => "required|min:3",
+            'slug' => "required|sometimes|unique:App\Models\Category,slug",
 
         ];
-    }public function messages()
-{
-    return [
-       "name.required" => "Bu alan zorunludur.",
-        "name.min" => "Ad soyad alanı en az 3 karakterden oluşmalıdır.",
-        "slug.required" => "Bu alan zorunludur.",
-        "slug.unique" => "Aynı :attribute  var."
+    }
 
-    ];
-}
+    public function messages()
+    {
+        return [
+            "name.required" => "Bu alan zorunludur.",
+            "name.min" => "Ad soyad alanı en az 3 karakterden oluşmalıdır.",
+            "slug.required" => "Bu alan zorunludur.",
+            "slug.unique" => "Aynı :attribute  var."
+
+        ];
+    }
 
     protected function passedValidation()
     {

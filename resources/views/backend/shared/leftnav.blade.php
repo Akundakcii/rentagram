@@ -1,4 +1,7 @@
+
 <ul class="nav flex-column">
+
+  @if(auth()->user()->is_admin===10)
     <li class="nav-item">
         <a class="nav-link active" aria-current="page" href="#">
             <span data-feather="home" class="align-text-bottom"></span>
@@ -18,6 +21,8 @@
             Kategoriler
         </a>
     </li>
+    @endif
+
     <li class="nav-item">
         <a class="nav-link {{Str::of(url()->current())->contains("/cars") ? "active" : ""}}"
            href="/cars">
@@ -25,6 +30,6 @@
             Arabalar
         </a>
     </li>
-    </li>
+
 
 </ul>

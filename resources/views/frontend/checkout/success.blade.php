@@ -14,9 +14,15 @@
             <main class="mt-5">
                 <h1>Ödeme Başarılı</h1>
                 <p>Ödeme işleminiz başarıyla gerçekleştirildi.</p>
+                <p>Ana sayfaya yönlendiriliyorsunuz...</p>
             </main>
         </div>
     </div>
 </div>
+<script>
+    setTimeout(function () {
+        window.location.href = '/';
+    }, 3000)
+</script>
 </body>
 </html>

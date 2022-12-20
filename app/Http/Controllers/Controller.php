@@ -31,7 +31,7 @@ class Controller extends BaseController
         foreach ($fillables as $fillable) {
             if ($request->has($fillable)) {
                 $data[$fillable] = $request->get($fillable);
-            }else {
+            } else {
 
                 /*if(Str::of($fillable)->staartWith("is_")){
                     $data[$fillable]=0;
@@ -39,13 +39,13 @@ class Controller extends BaseController
                 }*/
             }
 
-                }
+        }
         if (count($request->allFiles()) > 0) {
             foreach ($request->allFiles() as $key => $value) {
                 $uploadedFile = $request->file($key);
                 $data[$key] = $uploadedFile->hashName();
-                $uploadedFile->storeAs($this->filleRepo,$data[$key]);
-    }
+                $uploadedFile->storeAs($this->filleRepo, $data[$key]);
+            }
         }
 
         return $data;

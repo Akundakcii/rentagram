@@ -13,6 +13,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CarController extends Controller
 {
@@ -149,8 +150,13 @@ class CarController extends Controller
 
 
         $data = $this->prepare( $request, $car->getFillable());
+        $car->is_active = $request->get('is_active', 0);
         $car->fill($data);
         $car->save();
+
+        //Alert::toast('Silindi', 'success');
+        Alert::success('Başarılı', 'Kaydedildi');
+
 
         return Redirect::to($this->returnUrl);
     }
@@ -168,6 +174,7 @@ class CarController extends Controller
 
         $car->delete();
 
+        Alert::success('Başarılı', 'Kaydedildi');
 
        // return response()->json(["message" => "Done", "id" => $car->car_id]);
         return Redirect::to($this->returnUrl);

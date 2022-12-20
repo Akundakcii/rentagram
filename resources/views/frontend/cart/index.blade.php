@@ -25,7 +25,7 @@
                             </li>
                             @auth()
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/hesabim">Hesabım</a>
+                                    <a class="nav-link" href="/hesabim">Profil</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="/cikis">Çıkış</a>
@@ -46,7 +46,9 @@
     </div>
     <div class="row">
         <div class="col-sm-3 pt-4">
-            <h5>Hesabım</h5>
+
+
+            <h5>Sepetim</h5>
             <div class="list-group">
                 <a href="/" class="list-group-item list-group-item-action">Sepetim</a>
             </div>

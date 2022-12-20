@@ -23,7 +23,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <x-checkbox field="is_active" label="Aktif Kategori" checked="{{$category->is_active == 1}}"/>
+                <x-checkbox field="is_active" label="Aktif Kategori" :checked="$category->is_active == 1"/>
             </div>
         </div>
         <div class="row">

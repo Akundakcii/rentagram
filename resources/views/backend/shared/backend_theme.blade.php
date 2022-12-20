@@ -104,9 +104,8 @@
         </main>
     </div>
 </div>
-<sprpt type="text/javascript" src="{{asset("js/app.js")}}">
-
-</sprpt>
-
+<script type="text/javascript" src="{{asset("js/app.js")}}">
+</script>
+@include('sweetalert::alert')
 </body>
 </html>

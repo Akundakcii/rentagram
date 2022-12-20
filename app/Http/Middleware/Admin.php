@@ -7,16 +7,11 @@ use Illuminate\Http\Request;
 
 class Admin
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-     */
-    public function handle(Request $request, Closure $next)
+
+    public function handle(Request $request, Closure $next, $level = null)
     {
-        abort_unless($request->user()->is_admin, 403);
+        $can_access = $level ? ($request->user()->is_admin === (int)$level) : $request->user()->is_admin;
+        abort_unless($can_access, 403);
         return $next($request);
     }
 }

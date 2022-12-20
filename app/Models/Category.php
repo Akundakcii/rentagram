@@ -22,7 +22,7 @@ class Category extends Model
     ];
 public function cars()
 {
-    return $this->hasMany(\App\Models\Car::class, "car_id", "car_id");
+    return $this->hasMany(\App\Models\Car::class, "category_id", "category_id");
 
 
 }

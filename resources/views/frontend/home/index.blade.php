@@ -23,6 +23,9 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="/">Anasayfa</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/adress">Bilgilerim</a>
+                            </li>
                             @auth()
                                 <li class="nav-item">
                                     <a class="nav-link" href="/sepetim">Sepetim</a>
@@ -57,23 +60,57 @@
                     @endforeach
                 @endif
             </div>
+
+            <form class="mt-2" method="GET">
+                <div class="form-group">
+                    <label for="min_price">En düşük fiyat</label>
+                    <input type="number" name="min_price" class="form-control" id="min_price" placeholder="Alt limit" min="0" value="{{request()->min_price}}">
+                </div>
+                <div class="form-group">
+                    <label for="min_price">En yüksek fiyat</label>
+                    <input type="number" name="max_price" class="form-control" id="max_price" placeholder="Üst limit" value="{{request()->max_price}}">
+                </div>
+
+
+                <div class="form-group">
+                    <label>Markalar</label>
+                    @foreach($brands as $brand)
+                        <div class="form-check">
+                            <input class="form-check-input" name="brand[]" type="checkbox" value="{{$brand}}" id="{{$brand}}"
+                                   @checked(in_array($brand, request()->brand ?? []))
+                            >
+                            <label class="form-check-label" for="{{$brand}}">
+                                {{$brand}}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
+
+                <div class="form-group text-end">
+                    <button class="btn btn-primary">Ara</button>
+                </div>
+            </form>
         </div>
+
+
         <div class="col-sm-9 pt-4">
-            <h5>Ürünler</h5>
+            <h5>Araçlar</h5>
             @if(count($cars) > 0)
-                <div class="card-group">
+                <div class="card-group row">
                     @foreach($cars as $car)
-                        <div class="card" style="width: 18rem;">
-                            @if($car->images->isNotEmpty())
-                            <img src="{{asset("/storage/cars/".$car->images[0]->image_url)}}"
-                                 class="card-img-top" alt="{{$car->images[0]->alt}} "  width="100"  >
-                            @endif
-                            <div class="card-body">
-                                <h5 class="card-title">{{$car->name}}</h5>
-                                <h6 class="card-title">Fiyat: {{$car->price}}TL</h6>
-                                <p class="card-text">{{$car->description }}</p>
-                                <a href="/sepetim/ekle/{{$car->car_id}}" class="btn btn-primary">Sepete Ekle</a>
-                                <a href="/ilan/{{$car->slug}}" class="btn btn-primary">İlan</a>
+                        <div class="col-md-4">
+                            <div class="card" style="min-height: 380px">
+                                @if($car->images->isNotEmpty())
+                                    <div style="background: url('{{asset("/storage/cars/".$car->images[0]->image_url)}}'); background-size: cover; height: 150px; width: 100%"
+                                         class="card-img-top" alt="{{$car->images[0]->alt}} "></div>
+                                @endif
+                                <div class="card-body">
+                                    <h5 class="card-title">{{$car->name}}</h5>
+                                    <h6 class="card-title">Fiyat: {{$car->price}}TL</h6>
+                                    <p class="card-text">{{$car->description }}</p>
+                                    <a href="/sepetim/ekle/{{$car->car_id}}" class="btn btn-primary">Sepete Ekle</a>
+                                    <a href="/ilan/{{$car->slug}}" class="btn btn-primary">İlan</a>
+                                </div>
                             </div>
                         </div>
                     @endforeach
