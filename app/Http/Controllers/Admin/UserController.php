@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
@@ -14,12 +15,10 @@ class UserController extends Controller
 {
 
 
-
-
- public function __construct()
-{
-    $this->returnUrl = "/user";
-}
+    public function __construct()
+    {
+        $this->returnUrl = "/user";
+    }
 
     /**
      * Display a listing of the resource.
@@ -60,7 +59,7 @@ class UserController extends Controller
         $is_active = $request->get("is_active", default: 0);
 
 
-   $user = new User();
+        $user = new User();
         $user->name = $name;
         $user->surname = $surname;
 
@@ -71,10 +70,10 @@ class UserController extends Controller
         $user->is_active = $is_active;
 
 
-  //Güncelleştirme Çalışmadığı için kodlar kısıltılmadı
-       /* $data=$this->prepare($request,$user->getFillable());
-         $user->fill($data);
-         $user->password=Hash::make($user->password);*/
+        //Güncelleştirme Çalışmadığı için kodlar kısıltılmadı
+        /* $data=$this->prepare($request,$user->getFillable());
+          $user->fill($data);
+          $user->password=Hash::make($user->password);*/
         $user->save();
 
 
@@ -139,23 +138,20 @@ class UserController extends Controller
         //Güncelleştirme Çalışmadığı için kodlar kısıltılmadı
         /*  $data=$this->prepare($request,$user->getFillable());
         $user->fill($data);*/
-         $user->save();
+        $user->save();
 
 
         return Redirect::to($this->returnUrl);;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
+
+    public function destroy(User $user): JsonResponse
     {
+        $id=$user->user_id;
         $user->delete();
 
-        return Redirect::to($this->returnUrl);
+         return response()->json(["message" => "Done", "id" => $id]);
+        //return Redirect::to($this->returnUrl);
 
     }
 

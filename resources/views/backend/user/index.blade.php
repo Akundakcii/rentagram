@@ -28,8 +28,21 @@
                         <td>{{$user->name}}</td>
                         <td>{{$user->surname}}</td>
                         <td>{{$user->email}}</td>
-                        <td>{{$user->is_active}}</td>
-                        <td>{{$user->is_admin}}</td>
+                        <td>
+                            @if($user->is_active == 1)
+                                <span class="badge bg-success">Aktif</span>
+                            @else
+                                <span class="badge bg-danger">Pasif</span>
+                            @endif
+                        </td>
+
+                        <td> @if($user->is_admin == 0)
+                                <span class="badge bg-danger">Üye</span>
+                            @elseif($user->is_admin == 1)
+                                <span class="badge bg-success">Admin</span>
+                            @elseif($user->is_admin == 10)
+                                <span class="badge bg-primary">S.Admin</span>
+                            @endif</td>
                         <td>{{$user->tel_no}}</td>
                         <td>
 
@@ -41,7 +54,8 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link list-item-delete text-black" href="{{url("/user/$user->user_id")}}">
+
+                                    <a class="nav-link list-item-delete text-black" href="{{url("/user/$user->user_id")}}" data-redirect="/user" >
                                         <span data-feather="trash-2"></span>
                                         Sil
                                     </a>
@@ -57,7 +71,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-black"
                                        href="{{url("/user/$user->user_id/addresses")}}">
-                                        <span data-feather="lock"></span>
+                                        <span data-feather="map-pin"></span>
                                         Adres
                                     </a>
                                 </li>

@@ -9,7 +9,7 @@
         <thead>
         <tr>
             <th scope="col">Araç Id</th>
-            <th scope="col">Araç Adı</th>
+            <th scope="col">Başlık</th>
             <th scope="col">Kategorisi</th>
             <th scope="col">K.Ekledi</th>
             <th scope="col">Km</th>
@@ -52,21 +52,21 @@
                             <li class="nav-item">
                                 <a class="nav-link text-black"
                                    href="{{url("/cars/$car->car_id/edit")}}">
-
+                                    <span data-feather="edit"></span>
                                     Güncelle
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link list-item-delete text-black"
                                    href="{{url("/cars/$car->car_id")}}">
-
+                                    <span data-feather="trash-2"></span>
                                     Sil
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-black"
                                    href="{{url("/cars/$car->car_id/images")}}">
-
+                                    <span data-feather="image"></span>
                                     Fotoğraflar
                                 </a>
                             </li>

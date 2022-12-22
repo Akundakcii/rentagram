@@ -8,6 +8,7 @@ use App\Helpers\IyzicoOptionsHelper;
 use App\Helpers\IyzicoPaymentCardHelper;
 use App\Helpers\IyzicoRequestHelper;
 use App\Http\Controllers\Controller;
+use App\Mail\CarRented;
 use App\Models\Car;
 use App\Models\Cart;
 use App\Models\CreditCard;
@@ -16,6 +17,7 @@ use App\Models\Order;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Iyzipay\Model\BasketItem;
 use Iyzipay\Model\BasketItemType;
@@ -180,6 +182,7 @@ class CheckoutController extends Controller
                 'unit_price' => $detail->car->price,
                 'total' => ($detail->quantity * $detail->car->price),
             ]);
+            Mail::to($detail->car->user)->send(new CarRented(auth()->user()));
             Car::where('car_id', $detail->car_id)->update([
                 'is_active' => false
             ]);

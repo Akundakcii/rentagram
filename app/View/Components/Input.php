@@ -8,32 +8,26 @@ use Illuminate\View\Component;
 
 class Input extends Component
 {
-    private string $type;
-    private string $label;
-    private string $placeholder;
-    private string $field;
-    private string $value;
-/**
- * @param string $type
- * @param string $label
- * @param string $placeholder
- * @param string $field
- * @param string $value
- *
- */
+    public string $type;
+    public string $label;
+    public string $placeholder;
+    public string $field;
+    public string $value;
+    public bool $disabled;
 
-    public function __construct( string $label ,string $type="text",  string $placeholder,   string $field ,string $value="")
 
+    public function __construct(string $label, string $type = "text", string $placeholder, string $field, string $value = "", bool $disabled = false)
     {
-        $this->type=$type;
-        $this->label=$label;
-        $this->placeholder=$placeholder;
-        $this->field=$field;
-        $this->value=$value;
-
+        $this->disabled = $disabled;
+        $this->type = $type;
+        $this->label = $label;
+        $this->placeholder = $placeholder;
+        $this->field = $field;
+        $this->value = $value;
 
 
     }
+
     /**
      * Get the view / contents that represent the component.
      *
@@ -41,14 +35,6 @@ class Input extends Component
      */
     public function render()
     {
-        return view('components.Input',[
-           "type"=>$this->type,
-            "label"=>$this->label,
-            "placeholder"=>$this->placeholder,
-            "field"=>$this->field,
-            "value"=>$this->value
-
-
-            ]);
+        return view('components.Input');
     }
 }

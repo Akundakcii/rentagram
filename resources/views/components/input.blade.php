@@ -4,8 +4,9 @@
        id="{{$field}}"
        name="{{$field}}"
        value="{{old($field, $value)}}"
-       placeholder="{{$placeholder}}">
-
+       placeholder="{{$placeholder}}"
+       @disabled($disabled)
+>
 @error("$field")
 <span class="text-danger">{{$message}}</span>
 @enderror

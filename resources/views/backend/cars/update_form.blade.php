@@ -1,6 +1,6 @@
 @extends("backend.shared.backend_theme")
-@section("title","Kategori Modülü")
-@section("subtitle","Kategori Güncelle")
+@section("title","Araç Modülü")
+@section("subtitle","Araç  Güncelle")
 @section("btn_url",url()->previous())
 @section("btn_label","Geri Dön")
 @section("btn_icon","arrow-left")

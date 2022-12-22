@@ -158,42 +158,120 @@
                 </div>
 
 
-
                 <div class="form-group text-end">
                     <button class="btn btn-primary">Ara</button>
                 </div>
             </form>
-
         </div>
 
 
         <div class="col-sm-9 pt-4">
-            <h5>Araçlar</h5>
-            @if(count($cars) > 0)
-                <div class="card-group row">
-                    @foreach($cars as $car)
-                        <div class="col-md-4">
-                            <div class="card" style="min-height: 380px">
-                                @if($car->images->isNotEmpty())
-                                    <div
-                                        style="background: url('{{asset("/storage/cars/".$car->images[0]->image_url)}}'); background-size: cover; height: 150px; width: 100%"
-                                        class="card-img-top" alt="{{$car->images[0]->alt}} "></div>
-                                @endif
-                                <div class="card-body">
-                                    <h5 class="card-title">{{$car->name}}</h5>
-                                    <h6 class="card-title">Fiyat: {{$car->price}}TL</h6>
-                                    <p class="card-text">{{$car->description }}</p>
-                                    <a href="/sepetim/ekle/{{$car->car_id}}" class="btn btn-primary">Sepete Ekle</a>
-                                    <a href="/ilan/{{$car->slug}}" class="btn btn-primary">İlan</a>
-                                </div>
+            @foreach($errors->all() as $error)
+                {{$error}}
+            @endforeach
+
+            <h1 class="h3 mb-3 fw-normal">Bilgilerim</h1>
+
+            <form method="POST">
+                @method('PUT')
+                @csrf
+                <div class="mt-2">
+                    <x-input label="İsim" placeholder="" field="name" type="text" :value="$user->name" disabled/>
+                </div>
+                <div class="mt-2">
+                    <x-input label="Soyad" placeholder="" field="surname" type="text" :value="$user->surname" disabled/>
+                </div>
+                <div class="mt-2">
+                    <x-input label="Telefon giriniz" placeholder="Telefon giriniz" field="tel_no" type="text"
+                             :value="$user->tel_no"/>
+                </div>
+
+                <div class="mt-2">
+                    <x-input label="Eposta giriniz" placeholder="Eposta giriniz" field="email" type="email"
+                             :value="$user->email"/>
+                </div>
+                <div class="row">
+                    <div class="col-12 mt-2">
+                        <button type="submit" class="btn btn-success">Bilgilerimi Güncelle</button>
+                    </div>
+
+                </div>
+            </form>
+            <H2>Şifre Değiştirme Ekranı</H2>
+            <form action="{{route('profile.change_password')}}" method="POST">
+                @method('PUT')
+                @csrf
+                <div class="mt-2">
+                    <x-input label="Şifre Giriniz" placeholder="Şifre giriniz" field="password" type="password"/>
+                </div>
+
+                <div class="mt-2">
+                    <x-input label="Şifre Tekrarı" placeholder="Şifrenizi tekrar giriniz"
+                             field="password_confirmation" type="password"/>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 mt-2">
+                        <button type="submit" class="btn btn-success">Şifre Değiştir</button>
+                    </div>
+                </div>
+            </form>
+
+            <div>
+                <h2>Adres Güncelle</h2>
+
+                <form method="POST" action="{{ route('profile.addAddress') }}">
+                    @csrf
+                    @method('PUT')
+
+                    <input type="hidden" name="user_id" value="{{$user->user_id}}">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mt-2">
+                                <x-input label="Şehir" placeholder="Şehir giriniz" field="city" type="text" :value="$address->city"/>
                             </div>
                         </div>
-                    @endforeach
-                </div>
-            @endif
+                        <div class="col-lg-6">
+                            <div class="mt-2">
+                                <x-input label="İlçe" placeholder="İlçe giriniz" field="district" type="text" :value="$address->district"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mt-2">
+                                <x-input label="Posta Kodu" placeholder="Posta kodu giriniz" field="zipcode"
+                                         type="text" :value="$address->zipcode"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="col-lg-6">
+                                <x-checkbox field="is_default" label="Varsayılan" :checked="(bool)$address->is_default"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="mt-4">
+                                <x-textarea label="Açık Adres" placeholder="Açık adres giriniz" field="address" :value="$address->address"
+                                            type="textarea"></x-textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary mt-2"><span data-feather="save"></span> Adres
+                                Güncelle
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+
 </body>
 <script type="text/javascript" src="{{asset("js/app.js")}}"></script>
+@include('sweetalert::alert')
 </html>

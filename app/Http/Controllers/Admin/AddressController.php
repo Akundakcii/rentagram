@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CarImageRequest;
+use App\Http\Requests\AddressRequest;
 use App\Models\Address;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
@@ -26,7 +26,7 @@ class AddressController extends Controller
      */
     public function index(User $user): View
     {
-        $addrs = $user->addrs;
+        $addrs = $user->addresses;
         return view("backend.addresses.index", ["addrs" => $addrs, "user" => $user]);
     }
 
@@ -44,10 +44,10 @@ class AddressController extends Controller
      * Store a newly created resource in storage.
      *
      * @param User $user
-     * @param CarImageRequest $request
+     * @param AddressRequest $request
      * @return RedirectResponse
      */
-    public function store(CarImageRequest $request, User $user): RedirectResponse
+    public function store(AddressRequest $request, User $user): RedirectResponse
     {
         $addr = new Address();
         $data = $this->prepare($request, $addr->getFillable());
@@ -79,12 +79,12 @@ class AddressController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param CarImageRequest $request
+     * @param AddressRequest $request
      * @param User $user
      * @param Address $address
      * @return RedirectResponse
      */
-    public function update(CarImageRequest $request, User $user, Address $address): RedirectResponse
+    public function update(AddressRequest $request, User $user, Address $address): RedirectResponse
     {
         $data = $this->prepare($request, $address->getFillable());
         $address->fill($data);
@@ -101,12 +101,12 @@ class AddressController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user,Address $address)
+    public function destroy(User $user,Address $address)
     {
-
+        $id=$address->address_id;
         $address->delete();
 
-        return back();
+        return response()->json(["message" => "Done", "id" => $id]);
 
     }
 }

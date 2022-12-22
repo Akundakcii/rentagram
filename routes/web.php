@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [\App\Http\Controllers\Frontend\CategoryController::class, 'index']);
 Route::get('/ilan/{car:slug}', [\App\Http\Controllers\Frontend\HomeController::class, 'detail']);
-Route::get('/kategori/{category:slug}', [\App\Http\Controllers\Frontend\CategoryController::class, 'index']);
+Route::get('/kategori/{category_slug}', [\App\Http\Controllers\Frontend\CategoryController::class, 'index']);
 
 Route::get("/giris", [\App\Http\Controllers\Frontend\AuthController::class, 'SignInForm']);
 Route::post("/giris", [\App\Http\Controllers\Frontend\AuthController::class, 'signIn']);
@@ -33,6 +33,11 @@ Route::group(["middleware" => "auth"], function () {
     Route::get("/sepetim/sil/{cartDetails}", [\App\Http\Controllers\Frontend\CartController::class, 'remove']);
     Route::get("/satin-al", [\App\Http\Controllers\Frontend\CheckoutController::class, 'showCheckoutForm']);
     Route::post("/satin-al", [\App\Http\Controllers\Frontend\CheckoutController::class, 'checkout']);
+
+    Route::get("/profil", [\App\Http\Controllers\Frontend\HomeController::class, 'edit']);
+    Route::put("/profil", [\App\Http\Controllers\Frontend\HomeController::class, 'update']);
+    Route::put("/profil/change-password", [\App\Http\Controllers\Frontend\HomeController::class, 'changePassword'])->name('profile.change_password');
+    Route::put("/profil/add-address", [\App\Http\Controllers\Frontend\HomeController::class, 'addAddress'])->name('profile.addAddress');
 });
 
 

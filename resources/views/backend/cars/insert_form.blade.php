@@ -1,6 +1,6 @@
 @extends("backend.shared.backend_theme")
 @section("title","Car Modülü")
-@section("subtitle","Yeni Ürün Ekle")
+@section("subtitle","Yeni Araç Ekle")
 @section("btn_url",url()->previous())
 @section("btn_label","Geri Dön")
 @section("btn_icon","arrow-left")
@@ -23,7 +23,7 @@
 
             <div class="col-lg-6">
                 <div class="mt-2">
-                    <x-input label="Araba adı" placeholder="Araba adı giriniz" field="name" type="text"/>
+                    <x-input label="Başlık" placeholder="Başlık giriniz" field="name" type="text"/>
                 </div>
             </div>
 

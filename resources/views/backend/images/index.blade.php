@@ -49,11 +49,11 @@
                                 <form action="{{url("/cars/$car->car_id/images/$image->image_id")}}" method="POST">
                                     @method("DELETE")
                                      @csrf
-                                <BUTTON class="nav-link list-item-delete text-black "
+                                <a class="nav-link list-item-delete text-black "
                                         type="submit">
                                     <span data-feather="trash-2"></span>
                                     Sil
-                                </BUTTON>
+                                </a>
 
                                 </form>
                             </li>

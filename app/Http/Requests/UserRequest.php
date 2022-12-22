@@ -27,15 +27,16 @@ class  UserRequest extends FormRequest
         return [
             'name'=>"required|sometimes|min:3",
             'surname'=>"required|sometimes|min:3",
-
             'tel_no'=>"required|min:10|sometimes|integer",
             'email'=>"required|email|sometimes|unique:App\Models\User,email,$user_id",
             'password'=>"required|sometimes|string|min:6|confirmed",
+            'is_admin'=>"required",
         ];
     }public function messages()
 {
     return [
         "name.required" => "Bu alan zorunludur.",
+        "is_admin.required" => "Bu alan zorunludur.",
         "name.min" => "Ad soyad alanı en az 3 karakterden oluşmalıdır.",
         "surname.required" => "Bu alan zorunludur.",
         "surname.min" => "Soyad alanı en az 3 karakterden oluşmalıdır.",

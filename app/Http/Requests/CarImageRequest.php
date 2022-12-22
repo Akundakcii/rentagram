@@ -25,8 +25,9 @@ class  CarImageRequest extends FormRequest
     {
 
         return [
-           /* 'car_id' => "required|numeric",
-            'image_url' => "required|image|mimes:jpg,jpeg,png|sometimes",*/
+            'car_id' => "required|numeric",
+            'image_url' => "required|image|mimes:jpg,jpeg,png|sometimes",
+            'seq'=>"required",
 
 
         ];
@@ -39,6 +40,7 @@ class  CarImageRequest extends FormRequest
           //  "car_id.min" => "Ad soyad alanı en az 3 karakterden oluşmalıdır.",
             "image_url.required" => "Bu alan zorunludur.",
             "image_url.mimes" => "Sadec .Jpg,.jpeg,.png yuklenır.",
+            "seq.required"=>"boş geçilemez"
 
         ];
     }

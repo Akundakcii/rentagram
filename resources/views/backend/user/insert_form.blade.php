@@ -47,7 +47,7 @@
                           <div class="form-check mt-2">
 
                               <select name="is_admin" >
-                                  <option selected></option>
+                                  <option selected value="0">Üye</option>
                                   <option value="0">Üye</option>
                                   <option value="1">Admin</option>
                                   <option value="10">Süper Admin</option>

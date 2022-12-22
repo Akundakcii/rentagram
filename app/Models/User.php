@@ -4,15 +4,16 @@ namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
- use Illuminate\Database\Eloquent\SoftDeletes;
- use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable,SoftDeletes;
-      protected$primaryKey ="user_id";
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+
+    protected $primaryKey = "user_id";
     /**
      * The attributes that are mass assignable.
      *
@@ -46,7 +47,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function addrs()
+
+    public function addresses()
     {
         return $this->hasMany(Address::class, "user_id", "user_id");
     }
@@ -55,9 +57,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Cart::class, "user_id", "user_id");
     }
+
     public function cars()
     {
-        return $this->hasMany(Car::class,"user_id","user_id");
+        return $this->hasMany(Car::class, "user_id", "user_id");
     }
 
 }
