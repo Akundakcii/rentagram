@@ -46,14 +46,13 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <form action="{{url("/cars/$car->car_id/images/$image->image_id")}}" method="POST">
+                                <form onsubmit="return confirm('Bu kaydı silmek istediğinize emin misiniz?')" action="{{url("/cars/$car->car_id/images/$image->image_id")}}" method="POST">
                                     @method("DELETE")
-                                     @csrf
-                                <a class="nav-link list-item-delete text-black "
-                                        type="submit">
-                                    <span data-feather="trash-2"></span>
-                                    Sil
-                                </a>
+                                    @csrf
+                                    <button class="btn btn-danger" type="submit">
+                                        <span data-feather="trash-2"></span>
+                                        Sil
+                                    </button>
 
                                 </form>
                             </li>

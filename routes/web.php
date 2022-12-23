@@ -38,6 +38,8 @@ Route::group(["middleware" => "auth"], function () {
     Route::put("/profil", [\App\Http\Controllers\Frontend\HomeController::class, 'update']);
     Route::put("/profil/change-password", [\App\Http\Controllers\Frontend\HomeController::class, 'changePassword'])->name('profile.change_password');
     Route::put("/profil/add-address", [\App\Http\Controllers\Frontend\HomeController::class, 'addAddress'])->name('profile.addAddress');
+    Route::GET("/cartdetail/{id}/increment", [\App\Http\Controllers\Frontend\CartController::class, 'increment'])->name('cart.increment');
+    Route::GET("/cartdetail/{id}/decrement", [\App\Http\Controllers\Frontend\CartController::class, 'decrement'])->name('cart.decrement');
 });
 
 
@@ -51,8 +53,6 @@ Route::group(["middleware" => ["auth", "is_admin:10"]], function () {
 
     Route::resource("/cars/{car}/images", \App\Http\Controllers\Admin\CarImageController::class);
     Route::resource("/user/{user}/addresses", \App\Http\Controllers\Admin\AddressController::class);
-    Route::GET("/cartdetail/{id}/increment", [\App\Http\Controllers\Frontend\CartController::class, 'increment'])->name('cart.increment');
-    Route::GET("/cartdetail/{id}/decrement", [\App\Http\Controllers\Frontend\CartController::class, 'decrement'])->name('cart.decrement');
 });
 
 

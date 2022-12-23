@@ -25,11 +25,9 @@
                             </li>
                             @auth()
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/adress">Bilgilerim</a>
+                                    <a class="nav-link" href="/profil">Bilgilerim</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/hesabim">Profil</a>
-                                </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link" href="/cikis">Çıkış</a>
                                 </li>

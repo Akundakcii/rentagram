@@ -190,6 +190,8 @@
                         </div>
                     @endforeach
                 </div>
+            @else
+                <H4> ARAÇ BULUNAMADI.</H4>
             @endif
         </div>
     </div>
