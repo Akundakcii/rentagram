@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -76,6 +77,7 @@ class UserController extends Controller
           $user->password=Hash::make($user->password);*/
         $user->save();
 
+        Alert::success('Başarılı', 'Kaydedildi');
 
         //dd($request->all());
 
@@ -139,6 +141,7 @@ class UserController extends Controller
         /*  $data=$this->prepare($request,$user->getFillable());
         $user->fill($data);*/
         $user->save();
+        Alert::success('Başarılı', 'Kaydedildi');
 
 
         return Redirect::to($this->returnUrl);;
@@ -149,6 +152,9 @@ class UserController extends Controller
     {
         $id=$user->user_id;
         $user->delete();
+
+
+        Alert::success('Başarılı', 'Kaydedildi');
 
          return response()->json(["message" => "Done", "id" => $id]);
         //return Redirect::to($this->returnUrl);
@@ -163,15 +169,23 @@ class UserController extends Controller
 
     public function passwordForm(User $user)
     {
-
         return view("backend.user.password_form", ["user" => $user]);
     }
 
-    public function changePassword(User $user, UserRequest $request)
+    public function changePassword(User $user, Request $request)
     {
+       $request->validate([
+
+           'password' => "required|string|min:6|confirmed",
+
+       ]);
         $password = $request->get("password");
+
         $user->password = Hash::make($password);
         $user->save();
+
+        Alert::success('Başarılı', 'Kaydedildi');
+
         return Redirect::to($this->returnUrl);;
     }
 

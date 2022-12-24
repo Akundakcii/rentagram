@@ -54,7 +54,7 @@ class CheckoutController extends Controller
         $paymentCard = IyzicoPaymentCardHelper::getPaymentCard($creditCard);
         $request->setPaymentCard($paymentCard);
 
-        // Buyer nesnesini oluştur
+        // ALıcı nesnesini oluştur
         $buyer = IyzicoBuyerHelper::getBuyer();
         $request->setBuyer($buyer);
 

@@ -191,7 +191,7 @@
                     @endforeach
                 </div>
             @else
-                <H4> ARAÇ BULUNAMADI.</H4>
+                <p class="text-danger text-center">Aradığınız Kriterlerde Aracımız Yok.</p>
             @endif
         </div>
     </div>

@@ -12,6 +12,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CarImageController extends Controller
 {
@@ -119,6 +120,8 @@ class CarImageController extends Controller
             Storage::disk("local")->delete($filepath);
         }
         $image->delete();
+        Alert::success('Başarıyla', 'SİLİNDİ');
+
         return back();
 
     }

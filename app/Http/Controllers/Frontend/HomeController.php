@@ -62,6 +62,13 @@ class HomeController extends Controller
 
     public function changePassword(Request $request)
     {
+        $request->validate([
+            'password' => 'required',
+            'password_confirmation' => 'required',
+
+
+        ]);
+
         $password = $request->get("password");
         $password_confirmation = $request->input('password_confirmation');
 
@@ -82,7 +89,11 @@ class HomeController extends Controller
     public function addAddress(Request $request)
     {
         $request->validate([
-            'city' => 'required'
+            'city' => 'required',
+            'district' => 'required',
+            'zipcode' => 'required',
+            'address' => 'required',
+
         ]);
 
         $request->user()->addresses()->first()->update([

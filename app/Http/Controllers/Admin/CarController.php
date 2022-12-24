@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CarRequest;
 use App\Models\Car;
 use App\Models\Category;
+use http\Env\Response;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -95,6 +96,7 @@ class CarController extends Controller
         $data = $this->prepare($request, $car->getFillable());
         $car->fill($data);
         $car->save();*/
+        Alert::success('Başarılı', 'Kaydedildi');
 
         return Redirect::to($this->returnUrl);
     }
@@ -169,15 +171,16 @@ class CarController extends Controller
      * @param int $car
      * @return \Illuminate\Http\Response
      */
-    public function show(Car $car)
+    public function destroy(Car $car)
     {
 
         $car->delete();
 
-        Alert::success('Başarılı', 'Kaydedildi');
+        Alert::success('Başarılı','SİLİNDİ');
 
-       // return response()->json(["message" => "Done", "id" => $car->car_id]);
-        return Redirect::to($this->returnUrl);
+
+        return response()->json();
+       // return Redirect::to($this->returnUrl);
 
     }
 

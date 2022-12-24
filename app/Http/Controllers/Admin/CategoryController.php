@@ -113,12 +113,12 @@ class CategoryController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function destroy(Category $category):JsonResponse
     {
 
         $category->delete();
-       // return response()->json(["message" => "Done", "id" => $category->category_id]);
-        return Redirect::to($this->returnUrl);
+       return response()->json();
+       // return Redirect::to($this->returnUrl);
 
     }
 

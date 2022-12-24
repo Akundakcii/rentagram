@@ -39,8 +39,10 @@
                                 </a>
                             </li>
                             <li class="nav-item">
+
                                 <a class="nav-link list-item-delete text-black"
                                    href="{{url("/categories/$category->category_id")}}">
+
                                     <span data-feather="trash-2"></span>
                                     Sil
                                 </a>

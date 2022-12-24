@@ -21,6 +21,7 @@ class CategoryController extends Controller
 
         $cars = Car::query()
             ->when($request->cities, fn($query) => $query->whereHas('user.addresses', fn($q) => $q->whereIn('city', $request->cities)))
+
             ->when(
                 $category_slug,
                 fn($query) => $query->where('category_id', $category->category_id)
